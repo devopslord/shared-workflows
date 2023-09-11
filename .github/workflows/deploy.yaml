@@ -1,0 +1,24 @@
+
+on:
+  workflow_call:
+    inputs:
+      deployment-name:
+        required: true
+        description: 'The name of the deployment'
+        type: string
+      version:
+        required: true
+        description: 'The version to be deployed'
+        type: string
+      target:
+        required: true
+        description: 'The target environment'
+        type: string
+name: Deploy
+run-name: "Deploying ${{ inputs.deployment-name }}:${{ inputs.version }} in ${{ inputs.target }}"
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying ${{ inputs.deployment-name }}:${{ inputs.version }} in ${{ inputs.target }}..."
+      - run: echo "Deployed!!!"
